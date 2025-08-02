@@ -25,13 +25,12 @@ make-bmp() {
 	bmp-header "$width" "$height"
 	local padding=$REPLY
 
-	local r g b y x
+	local r g b y x c
 	for ((y = 0; y < height; y++)); do
 		for ((x = 0; x < width; x++)); do
-			local c=${SPRITE[height - y - 1]}
+			c=${SPRITE[height - y - 1]}
 			c=${c:x:1}
 
-			local r g b
 			read -r r g b <<< "${PALETTE[$c]}"
 			bmp-rgb "$r" "$g" "$b"
 		done
