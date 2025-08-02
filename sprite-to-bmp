@@ -66,6 +66,12 @@ load-palette() {
 	done
 }
 
+fail() {
+    local message="$1"
+    echo "$message" >&2
+    exit 1
+}
+
 main() {
 	local output=out.bmp
 
@@ -78,7 +84,7 @@ main() {
 		esac
 	done
 
-	[[ -n $palette ]] || exit
+	[[ -n $palette ]] || fail "Must provide color palette file with the '-p PALETTE' option."
 	load-palette "$palette"
 
 	make-bmp > "$output" || exit
