@@ -65,11 +65,10 @@ bmp-header() {
 	local row_size=$((width * bytes_per_px))
 
 	# align to a 4 byte boundary
-	local padding=0
-	while ((row_size % 4 != 0)); do
-		((padding++))
-		((row_size++))
-	done
+	local rem=$((row_size % 4))
+	local padding=$( [[ $rem == 0 ]] && printf 0 || printf $((4 - rem)) )
+
+	row_size=$((row_size + padding))
 
 	local pixel_data_size=$((row_size * height))
 	local pixel_data_offset=$((14 + 40))
