@@ -35,7 +35,7 @@ make-bmp() {
 			read -r r g b <<< "${PALETTE[$c]}"
 			bmp-rgb "$r" "$g" "$b"
 		done
-		debug "handled row $y/$height"
+		debug "handled row $((y + 1))/$height"
 		bmp-pad "$padding"
 	done
 }
