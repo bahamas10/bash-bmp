@@ -15,16 +15,12 @@ u32le() {
 	# octet2: 0x34
 	# octet3: 0x56
 	# octet4: 0x78
-	local octet1=$(( (n >> 24) & 0xFF))
-	local octet2=$(( (n >> 16) & 0xFF))
-	local octet3=$(( (n >> 8)  & 0xFF))
-	local octet4=$(( (n >> 0)  & 0xFF))
+	local octet1=$(( (n >> 0)  & 0xFF))
+	local octet2=$(( (n >> 8)  & 0xFF))
+	local octet3=$(( (n >> 16) & 0xFF))
+	local octet4=$(( (n >> 24) & 0xFF))
 
-	printf -v out '\\x%02x\\x%02x\\x%02x\\x%02x' \
-	    "$octet4" \
-	    "$octet3" \
-	    "$octet2" \
-	    "$octet1"
+	printf -v out '\\x%02x' $octet1 $octet2 $octet3 $octet4
 	printf '%b' "$out"
 }
 
@@ -35,12 +31,10 @@ u16le() {
 	# ex: input = 0x1234
 	# octet1: 0x12
 	# octet2: 0x34
-	local octet1=$(( (n >> 8) & 0xFF))
-	local octet2=$(( (n >> 0) & 0xFF))
+	local octet1=$(( (n >> 0) & 0xFF))
+	local octet2=$(( (n >> 8) & 0xFF))
 
-	printf -v out '\\x%02x\\x%02x' \
-	    "$octet2" \
-	    "$octet1"
+	printf -v out '\\x%02x' $octet1 $octet2
 	printf '%b' "$out"
 }
 
@@ -50,10 +44,7 @@ bmp-rgb() {
 	local b=$3
 	local out
 
-	printf -v out '\\x%02x\\x%02x\\x%02x' \
-	    "$b" \
-	    "$g" \
-	    "$r"
+	printf -v out '\\x%02x' $b $g $r
 	printf '%b' "$out"
 }
 
