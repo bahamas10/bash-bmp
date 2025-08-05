@@ -20,7 +20,7 @@ u32le() {
 	local octet3=$(( (n >> 8)  & 0xFF))
 	local octet4=$(( (n >> 0)  & 0xFF))
 
-	printf -v out '\\x%02x\\x%02x\\x%02x\\x%02x' \
+	printf -v out '\\x%02x' \
 	    "$octet4" \
 	    "$octet3" \
 	    "$octet2" \
@@ -38,7 +38,7 @@ u16le() {
 	local octet1=$(( (n >> 8) & 0xFF))
 	local octet2=$(( (n >> 0) & 0xFF))
 
-	printf -v out '\\x%02x\\x%02x' \
+	printf -v out '\\x%02x' \
 	    "$octet2" \
 	    "$octet1"
 	printf '%b' "$out"
@@ -50,7 +50,7 @@ bmp-rgb() {
 	local b=$3
 	local out
 
-	printf -v out '\\x%02x\\x%02x\\x%02x' \
+	printf -v out '\\x%02x' \
 	    "$b" \
 	    "$g" \
 	    "$r"
