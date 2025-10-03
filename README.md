@@ -16,7 +16,7 @@ Simple BMP (2x2 pixels)
 
 Color Gradient
 
-    ./gradient -h 200 -v 200 -o out.bmp
+    ./gradient -h 200 -w 200 -o out.bmp
 
 ![gradient](https://files.daveeddy.com/ysap/bmp/gradient.png)
 
